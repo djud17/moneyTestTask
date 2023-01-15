@@ -10,10 +10,8 @@ import UIKit
 final class CurrencySheduleViewController: UIViewController {
     
     // MARK: - UI Elements
-    
-    
+
     // MARK: - Parameters
-    
     
     // MARK: - ViewController Lifecycles
     
