@@ -12,4 +12,8 @@ enum Constants {
         static let white: UIColor = .white
         
     }
+    
+    enum URL {
+        static let dailyRates = "https://www.cbr-xml-daily.ru/daily_json.js"
+    }
 }

@@ -14,6 +14,7 @@
 		255CBD6D29745AF700A9F52E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 255CBD6B29745AF700A9F52E /* LaunchScreen.storyboard */; };
 		255CBD7729745D1700A9F52E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255CBD7629745D1700A9F52E /* Constants.swift */; };
 		255CBD7C2974628000A9F52E /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255CBD7B2974628000A9F52E /* Currency.swift */; };
+		255CBD7E297463A100A9F52E /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255CBD7D297463A100A9F52E /* ApiClient.swift */; };
 		A53F2C4E46096EAA06991FC1 /* Pods_moneyTestTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CF9EAB0CD2E93F536D73BB /* Pods_moneyTestTask.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		255CBD6E29745AF700A9F52E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		255CBD7629745D1700A9F52E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		255CBD7B2974628000A9F52E /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		255CBD7D297463A100A9F52E /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		A8D9EA7EE7C89F55D8E687BC /* Pods-moneyTestTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moneyTestTask.debug.xcconfig"; path = "Target Support Files/Pods-moneyTestTask/Pods-moneyTestTask.debug.xcconfig"; sourceTree = "<group>"; };
 		D5CF9EAB0CD2E93F536D73BB /* Pods_moneyTestTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_moneyTestTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -105,6 +107,7 @@
 		255CBD792974623B00A9F52E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				255CBD7D297463A100A9F52E /* ApiClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				255CBD6129745AF500A9F52E /* AppDelegate.swift in Sources */,
 				255CBD6329745AF500A9F52E /* SceneDelegate.swift in Sources */,
 				255CBD7729745D1700A9F52E /* Constants.swift in Sources */,
+				255CBD7E297463A100A9F52E /* ApiClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
