@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Result
 struct RequestResult: Decodable {
-    let currencyRates: [String: Valute]
+    let currencyRates: [String: Currency]
 
     enum CodingKeys: String, CodingKey {
         case currencyRates = "Valute"
@@ -17,7 +17,7 @@ struct RequestResult: Decodable {
 }
 
 // MARK: - Valute
-struct Valute: Codable {
+struct Currency: Codable {
     let charCode: String
     let nominal: Int
     let name: String

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CurrencyCollectionViewCell" customModule="moneyTestTask" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="104" height="110"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="104" height="110"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LGp-8J-UCh">
+                        <rect key="frame" x="0.0" y="0.0" width="104" height="110"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gJ-wg-H09">
+                                <rect key="frame" x="20" y="21" width="64" height="41"/>
+                                <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUR-jb-klt">
+                                <rect key="frame" x="18" y="80" width="68" height="20"/>
+                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="tUR-jb-klt" secondAttribute="bottom" constant="10" id="1fw-uX-jhT"/>
+                            <constraint firstAttribute="width" constant="104" id="C8F-2q-rY4"/>
+                            <constraint firstAttribute="trailing" secondItem="tUR-jb-klt" secondAttribute="trailing" constant="18" id="QV8-Jo-lzT"/>
+                            <constraint firstItem="9gJ-wg-H09" firstAttribute="leading" secondItem="LGp-8J-UCh" secondAttribute="leading" constant="20" id="Qvs-kR-YHC"/>
+                            <constraint firstAttribute="height" constant="110" id="aGW-Zx-fG2"/>
+                            <constraint firstItem="tUR-jb-klt" firstAttribute="top" secondItem="9gJ-wg-H09" secondAttribute="bottom" constant="18" id="d6Z-no-KzM"/>
+                            <constraint firstItem="tUR-jb-klt" firstAttribute="leading" secondItem="LGp-8J-UCh" secondAttribute="leading" constant="18" id="h9S-Ep-DWo"/>
+                            <constraint firstItem="9gJ-wg-H09" firstAttribute="top" secondItem="LGp-8J-UCh" secondAttribute="top" constant="21" id="oat-ze-BKM"/>
+                            <constraint firstAttribute="trailing" secondItem="9gJ-wg-H09" secondAttribute="trailing" constant="20" id="vCp-V7-qSM"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="LGp-8J-UCh" secondAttribute="trailing" id="0Px-0F-XLy"/>
+                <constraint firstItem="LGp-8J-UCh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WdU-gj-zzA"/>
+                <constraint firstItem="LGp-8J-UCh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="iF3-YG-OUf"/>
+                <constraint firstAttribute="bottom" secondItem="LGp-8J-UCh" secondAttribute="bottom" id="pn7-QI-gpd"/>
+            </constraints>
+            <size key="customSize" width="104" height="110"/>
+            <connections>
+                <outlet property="backView" destination="LGp-8J-UCh" id="4R4-UV-SU9"/>
+                <outlet property="currencyCharLabel" destination="9gJ-wg-H09" id="KGV-jt-V8V"/>
+                <outlet property="currencyRateLabel" destination="tUR-jb-klt" id="icq-2y-6q9"/>
+            </connections>
+            <point key="canvasLocation" x="119.08396946564885" y="41.549295774647888"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
