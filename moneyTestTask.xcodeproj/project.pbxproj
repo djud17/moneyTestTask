@@ -12,6 +12,7 @@
 		255CBD6529745AF500A9F52E /* CurrencySheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255CBD6429745AF500A9F52E /* CurrencySheduleViewController.swift */; };
 		255CBD6A29745AF700A9F52E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 255CBD6929745AF700A9F52E /* Assets.xcassets */; };
 		255CBD6D29745AF700A9F52E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 255CBD6B29745AF700A9F52E /* LaunchScreen.storyboard */; };
+		255CBD7729745D1700A9F52E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255CBD7629745D1700A9F52E /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		255CBD6929745AF700A9F52E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		255CBD6C29745AF700A9F52E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		255CBD6E29745AF700A9F52E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		255CBD7629745D1700A9F52E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				255CBD6929745AF700A9F52E /* Assets.xcassets */,
 				255CBD6B29745AF700A9F52E /* LaunchScreen.storyboard */,
 				255CBD6E29745AF700A9F52E /* Info.plist */,
+				255CBD7629745D1700A9F52E /* Constants.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				255CBD6529745AF500A9F52E /* CurrencySheduleViewController.swift in Sources */,
 				255CBD6129745AF500A9F52E /* AppDelegate.swift in Sources */,
 				255CBD6329745AF500A9F52E /* SceneDelegate.swift in Sources */,
+				255CBD7729745D1700A9F52E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
