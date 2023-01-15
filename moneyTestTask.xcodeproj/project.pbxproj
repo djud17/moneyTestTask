@@ -20,6 +20,7 @@
 		255CBD87297485BF00A9F52E /* CurrencyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 255CBD85297485BF00A9F52E /* CurrencyCollectionViewCell.xib */; };
 		255CBD892974874C00A9F52E /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255CBD882974874C00A9F52E /* CellViewModel.swift */; };
 		255CBD8C29748CB400A9F52E /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255CBD8B29748CB400A9F52E /* UICollectionView.swift */; };
+		255CBD8F2974951500A9F52E /* CustomDataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255CBD8E2974951500A9F52E /* CustomDataPicker.swift */; };
 		A53F2C4E46096EAA06991FC1 /* Pods_moneyTestTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CF9EAB0CD2E93F536D73BB /* Pods_moneyTestTask.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		255CBD85297485BF00A9F52E /* CurrencyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrencyCollectionViewCell.xib; sourceTree = "<group>"; };
 		255CBD882974874C00A9F52E /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		255CBD8B29748CB400A9F52E /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
+		255CBD8E2974951500A9F52E /* CustomDataPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDataPicker.swift; sourceTree = "<group>"; };
 		A8D9EA7EE7C89F55D8E687BC /* Pods-moneyTestTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moneyTestTask.debug.xcconfig"; path = "Target Support Files/Pods-moneyTestTask/Pods-moneyTestTask.debug.xcconfig"; sourceTree = "<group>"; };
 		D5CF9EAB0CD2E93F536D73BB /* Pods_moneyTestTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_moneyTestTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -135,6 +137,7 @@
 		255CBD7F297465B000A9F52E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				255CBD8D297494FA00A9F52E /* CustomDataPicker */,
 				255CBD832974859800A9F52E /* Cell */,
 				255CBD6429745AF500A9F52E /* CurrencySheduleViewController.swift */,
 			);
@@ -165,6 +168,14 @@
 				255CBD8B29748CB400A9F52E /* UICollectionView.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		255CBD8D297494FA00A9F52E /* CustomDataPicker */ = {
+			isa = PBXGroup;
+			children = (
+				255CBD8E2974951500A9F52E /* CustomDataPicker.swift */,
+			);
+			path = CustomDataPicker;
 			sourceTree = "<group>";
 		};
 		7BF9F9D26470659FBA160015 /* Pods */ = {
@@ -314,6 +325,7 @@
 				255CBD6529745AF500A9F52E /* CurrencySheduleViewController.swift in Sources */,
 				255CBD7C2974628000A9F52E /* Currency.swift in Sources */,
 				255CBD86297485BF00A9F52E /* CurrencyCollectionViewCell.swift in Sources */,
+				255CBD8F2974951500A9F52E /* CustomDataPicker.swift in Sources */,
 				255CBD6129745AF500A9F52E /* AppDelegate.swift in Sources */,
 				255CBD892974874C00A9F52E /* CellViewModel.swift in Sources */,
 				255CBD6329745AF500A9F52E /* SceneDelegate.swift in Sources */,
@@ -466,7 +478,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -498,7 +510,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

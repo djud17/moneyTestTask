@@ -23,8 +23,25 @@ final class CurrencySheduleViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var datePickerView: CustomDataPicker = {
+        let stringDate = dateFormatter.string(from: .now)
+        let datePicker = CustomDataPicker(currentDate: stringDate)
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(datePickerTapped))
+        datePicker.addGestureRecognizer(gesture)
+        
+        return datePicker
+    }()
+    
     // MARK: - Parameters
     private var presenter: CurrencyShedulePresenterProtocol
+    
+    private let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        
+        return dateFormatter
+    }()
     
     // MARK: - Inits
     init(presenter: CurrencyShedulePresenterProtocol) {
@@ -57,14 +74,62 @@ final class CurrencySheduleViewController: UIViewController {
     
     private func setupHierarchy() {
         view.addSubview(ratesCollectionView)
+        view.addSubview(datePickerView)
     }
     
     private func setupLayout() {
-        ratesCollectionView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(24)
-            make.trailing.equalToSuperview().inset(24)
-            make.top.bottom.equalToSuperview()
+        let mediumOffset = Constants.Offset.mediumOffset
+        
+        datePickerView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(mediumOffset)
+            make.leading.equalToSuperview().offset(mediumOffset)
+            make.trailing.equalToSuperview().inset(mediumOffset)
+            make.height.equalTo(44)
         }
+        
+        ratesCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(datePickerView.snp.bottom).offset(mediumOffset)
+            make.leading.equalToSuperview().offset(mediumOffset)
+            make.trailing.equalToSuperview().inset(mediumOffset)
+            make.bottom.equalToSuperview()
+        }
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func datePickerTapped() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let datePicker = setupDatePicker(in: alertController)
+        
+        alertController.view.snp.makeConstraints { make in
+            make.height.equalTo(343)
+        }
+        
+        let saveButton = UIAlertAction(title: "Сохранить", style: .default) { [weak self] _ in
+            let stringDate = self?.dateFormatter.string(from: datePicker.date) ?? ""
+            self?.datePickerView.setupDate(with: stringDate)
+        }
+        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
+        
+        alertController.addAction(saveButton)
+        alertController.addAction(cancelButton)
+        
+        present(alertController, animated: true)
+    }
+    
+    private func setupDatePicker(in contentView: UIAlertController) -> UIDatePicker {
+        let datePicker = UIDatePicker()
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.datePickerMode = .date
+        datePicker.maximumDate = .now
+        
+        contentView.view.addSubview(datePicker)
+        
+        datePicker.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+        }
+        
+        return datePicker
     }
 }
 

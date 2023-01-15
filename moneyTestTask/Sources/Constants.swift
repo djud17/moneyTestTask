@@ -21,4 +21,13 @@ enum Constants {
     enum URL {
         static let dailyRates = "https://www.cbr-xml-daily.ru/daily_json.js"
     }
+    
+    enum Size {
+        
+    }
+    
+    enum Offset {
+        static let smallOffset: CGFloat = 12
+        static let mediumOffset: CGFloat = 24
+    }
 }
