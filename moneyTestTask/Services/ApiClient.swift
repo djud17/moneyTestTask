@@ -14,11 +14,11 @@ enum ApiError: Error {
 }
 
 protocol ApiClientProtocol {
-    func getDailyRates(completion: @escaping (Result<RequestResult, ApiError>) -> (Void))
+    func getDailyRates(completion: @escaping (Result<RequestResult, ApiError>) -> Void)
 }
 
 final class ApiClient: ApiClientProtocol {
-    func getDailyRates(completion: @escaping (Result<RequestResult, ApiError>) -> (Void)) {
+    func getDailyRates(completion: @escaping (Result<RequestResult, ApiError>) -> Void) {
         guard let requestUrl = URL(string: Constants.URL.dailyRates) else { return }
         
         AF.request(requestUrl).responseData { response in

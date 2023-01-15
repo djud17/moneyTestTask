@@ -16,8 +16,17 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        let viewController = CurrencySheduleViewController()
-        window.rootViewController = UINavigationController(rootViewController: viewController)
+        
+        let apiClient: ApiClientProtocol = ApiClient()
+        let currencyShedulePresenter: CurrencyShedulePresenterProtocol = CurrencyShedulePresenter(apiClient: apiClient)
+        let currencySheduleViewController = CurrencySheduleViewController(presenter: currencyShedulePresenter)
+        let navigationController = UINavigationController(rootViewController: currencySheduleViewController)
+        
+        navigationController.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: Constants.Color.black
+        ]
+        
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
     }
