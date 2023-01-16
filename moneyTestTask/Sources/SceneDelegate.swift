@@ -25,7 +25,6 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigationController.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: Constants.Color.black
         ]
-        currencyShedulePresenter.navigationController = navigationController
         
         window.rootViewController = navigationController
         window.makeKeyAndVisible()

@@ -18,6 +18,7 @@ final class CurrencySheduleViewController: UIViewController {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(nibModels: [CurrencyCollectionViewCellModel.self])
         
         return collectionView
@@ -79,6 +80,7 @@ final class CurrencySheduleViewController: UIViewController {
         view.backgroundColor = Constants.Color.white
         
         navigationItem.title = "Валюты"
+        navigationItem.backButtonTitle = ""
     }
     
     private func setupHierarchy() {
@@ -125,6 +127,7 @@ final class CurrencySheduleViewController: UIViewController {
             self?.loadingIndicator.startAnimating()
             self?.presenter.loadData(for: datePicker.date)
         }
+        
         let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
         
         alertController.addAction(saveButton)
@@ -156,12 +159,17 @@ final class CurrencySheduleViewController: UIViewController {
 
 protocol CurrencySheduleDelegate: AnyObject {
     func updateView()
+    func showError(errorMessage: UIAlertController)
 }
 
 extension CurrencySheduleViewController: CurrencySheduleDelegate {
     func updateView() {
         loadingIndicator.stopAnimating()
         ratesCollectionView.reloadData()
+    }
+    
+    func showError(errorMessage: UIAlertController) {
+        present(errorMessage, animated: true)
     }
 }
 
