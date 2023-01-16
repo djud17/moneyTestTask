@@ -65,7 +65,8 @@ final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
                     self?.currencyRates = success.currencyRates
                     self?.currencies = success.currencyRates.keys.map { $0 }
                 case .failure(let error):
-                    print("Error - \(error.localizedDescription)")
+                    let errorMessage = "Ошибка во время загрузки ежедневных данных - \(error.localizedDescription)"
+                    self?.errorAppeared(message: errorMessage)
                 }
                 
                 DispatchQueue.main.async {
@@ -83,7 +84,12 @@ final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
                     self?.currencyRates = success.currencyRates
                     self?.currencies = success.currencyRates.keys.map { $0 }
                 case .failure(let error):
-                    print("Error - \(error.localizedDescription)")
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd.MM.yyyy"
+                    let stringDate = dateFormatter.string(from: date)
+                    
+                    let errorMessage = "Ошибка, данных на \(stringDate) нет - \(error.localizedDescription)"
+                    self?.errorAppeared(message: errorMessage)
                 }
                 
                 DispatchQueue.main.async {
@@ -102,5 +108,13 @@ final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
             let detailController = CurrencyDetailViewController(presenter: presenter)
             navigationController?.pushViewController(detailController, animated: true)
         }
+    }
+    
+    private func errorAppeared(message: String) {
+        let alertController = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Ok", style: .default)
+        alertController.addAction(okButton)
+        
+        delegate?.showError(errorMessage: alertController)
     }
 }

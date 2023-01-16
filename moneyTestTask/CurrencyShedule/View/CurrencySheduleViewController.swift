@@ -158,12 +158,17 @@ final class CurrencySheduleViewController: UIViewController {
 
 protocol CurrencySheduleDelegate: AnyObject {
     func updateView()
+    func showError(errorMessage: UIAlertController)
 }
 
 extension CurrencySheduleViewController: CurrencySheduleDelegate {
     func updateView() {
         loadingIndicator.stopAnimating()
         ratesCollectionView.reloadData()
+    }
+    
+    func showError(errorMessage: UIAlertController) {
+        present(errorMessage, animated: true)
     }
 }
 
