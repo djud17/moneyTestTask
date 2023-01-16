@@ -127,6 +127,7 @@ final class CurrencySheduleViewController: UIViewController {
             self?.loadingIndicator.startAnimating()
             self?.presenter.loadData(for: datePicker.date)
         }
+        
         let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
         
         alertController.addAction(saveButton)

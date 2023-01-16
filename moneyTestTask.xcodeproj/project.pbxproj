@@ -24,6 +24,8 @@
 		25906F3F2975A970009EDC5A /* CurrencyDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25906F3E2975A970009EDC5A /* CurrencyDetailViewController.swift */; };
 		25906F432975AA4F009EDC5A /* CurrencyDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25906F422975AA4F009EDC5A /* CurrencyDetailPresenter.swift */; };
 		25906F452975C0E8009EDC5A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25906F442975C0E8009EDC5A /* ViewController.swift */; };
+		25906F472975F644009EDC5A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25906F462975F644009EDC5A /* CustomTextField.swift */; };
+		25906F492975FB15009EDC5A /* CustomGrayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25906F482975FB15009EDC5A /* CustomGrayLabel.swift */; };
 		A53F2C4E46096EAA06991FC1 /* Pods_moneyTestTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CF9EAB0CD2E93F536D73BB /* Pods_moneyTestTask.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +50,8 @@
 		25906F3E2975A970009EDC5A /* CurrencyDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDetailViewController.swift; sourceTree = "<group>"; };
 		25906F422975AA4F009EDC5A /* CurrencyDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDetailPresenter.swift; sourceTree = "<group>"; };
 		25906F442975C0E8009EDC5A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		25906F462975F644009EDC5A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		25906F482975FB15009EDC5A /* CustomGrayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGrayLabel.swift; sourceTree = "<group>"; };
 		A8D9EA7EE7C89F55D8E687BC /* Pods-moneyTestTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moneyTestTask.debug.xcconfig"; path = "Target Support Files/Pods-moneyTestTask/Pods-moneyTestTask.debug.xcconfig"; sourceTree = "<group>"; };
 		D5CF9EAB0CD2E93F536D73BB /* Pods_moneyTestTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_moneyTestTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -199,6 +203,8 @@
 			isa = PBXGroup;
 			children = (
 				25906F3E2975A970009EDC5A /* CurrencyDetailViewController.swift */,
+				25906F462975F644009EDC5A /* CustomTextField.swift */,
+				25906F482975FB15009EDC5A /* CustomGrayLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -368,6 +374,8 @@
 				255CBD7729745D1700A9F52E /* Constants.swift in Sources */,
 				255CBD822974663700A9F52E /* CurrencyShedulePresenter.swift in Sources */,
 				255CBD7E297463A100A9F52E /* ApiClient.swift in Sources */,
+				25906F492975FB15009EDC5A /* CustomGrayLabel.swift in Sources */,
+				25906F472975F644009EDC5A /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

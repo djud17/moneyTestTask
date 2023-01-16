@@ -43,7 +43,7 @@ final class ApiClient: ApiClientProtocol {
     func getDailyRates(for date: Date, completion: @escaping (Result<RequestResult, ApiError>) -> Void) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
-
+        
         let stringDate = dateFormatter.string(from: date)
         let urlString = "https://www.cbr-xml-daily.ru/archive/\(stringDate)/daily_json.js"
         

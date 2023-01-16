@@ -20,9 +20,7 @@ final class CurrencyDetailViewController: UIViewController {
     }()
     
     private lazy var rateTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = Constants.Color.lightGray
-        label.font = .systemFont(ofSize: 15)
+        let label = CustomGrayLabel(with: 15)
         label.text = "Курс"
         
         return label
@@ -45,53 +43,33 @@ final class CurrencyDetailViewController: UIViewController {
     }()
     
     private lazy var currencyCharLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = Constants.Color.lightGray
-        label.font = .systemFont(ofSize: 14)
+        let label = CustomGrayLabel(with: 14)
         
         return label
     }()
     
     private lazy var currencyTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "0"
-        textField.borderStyle = .none
-        textField.keyboardType = .numbersAndPunctuation
-        textField.font = .boldSystemFont(ofSize: 36)
+        let textField = CustomTextField()
+        let bottomLine = createLineLayer()
         
-        var bottomLine = CALayer()
-        let width = view.frame.width - 32
-        bottomLine.frame = .init(x: 0, y: 46, width: width, height: 0.5)
-        bottomLine.backgroundColor = Constants.Color.textFieldLine
         textField.layer.addSublayer(bottomLine)
-        
         textField.addTarget(self, action: #selector(currencyTextFieldEditing), for: .editingChanged)
         
         return textField
     }()
     
     private lazy var rubCharLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = Constants.Color.lightGray
-        label.font = .systemFont(ofSize: 14)
+        let label = CustomGrayLabel(with: 14)
         label.text = "RUB"
         
         return label
     }()
     
     private lazy var rubTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "0"
-        textField.borderStyle = .none
-        textField.keyboardType = .numbersAndPunctuation
-        textField.font = .boldSystemFont(ofSize: 36)
+        let textField = CustomTextField()
+        let bottomLine = createLineLayer()
         
-        var bottomLine = CALayer()
-        let width = view.frame.width - 32
-        bottomLine.frame = .init(x: 0, y: 46, width: width, height: 0.5)
-        bottomLine.backgroundColor = Constants.Color.textFieldLine
         textField.layer.addSublayer(bottomLine)
-        
         textField.addTarget(self, action: #selector(rubTextFieldEditing), for: .editingChanged)
         
         return textField
@@ -144,52 +122,55 @@ final class CurrencyDetailViewController: UIViewController {
     }
     
     private func setupLayout() {
+        let smallOffset = Constants.DetailOffset.smallOffset
+        let mediumOffset = Constants.DetailOffset.mediumOffset
+        
         currencyNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().inset(16)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(mediumOffset)
+            make.leading.equalToSuperview().offset(smallOffset)
+            make.trailing.equalToSuperview().inset(smallOffset)
         }
         
         rateTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(currencyNameLabel.snp.bottom).offset(6)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().offset(smallOffset)
+            make.trailing.equalToSuperview().inset(smallOffset)
         }
         
         currencyRateLabel.snp.makeConstraints { make in
             make.top.equalTo(rateTitleLabel.snp.bottom).offset(4)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().offset(smallOffset)
+            make.trailing.equalToSuperview().inset(smallOffset)
         }
         
         backView.snp.makeConstraints { make in
-            make.top.equalTo(currencyRateLabel.snp.bottom).offset(20)
+            make.top.equalTo(currencyRateLabel.snp.bottom).offset(mediumOffset)
             make.leading.trailing.bottom.equalToSuperview()
         }
         
         currencyCharLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(24)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().offset(smallOffset)
+            make.trailing.equalToSuperview().inset(smallOffset)
         }
         
         currencyTextField.snp.makeConstraints { make in
             make.top.equalTo(currencyCharLabel.snp.bottom).offset(8)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().offset(smallOffset)
+            make.trailing.equalToSuperview().inset(smallOffset)
             make.height.equalTo(47)
         }
         
         rubCharLabel.snp.makeConstraints { make in
-            make.top.equalTo(currencyTextField.snp.bottom).offset(20)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().inset(16)
+            make.top.equalTo(currencyTextField.snp.bottom).offset(mediumOffset)
+            make.leading.equalToSuperview().offset(smallOffset)
+            make.trailing.equalToSuperview().inset(smallOffset)
         }
         
         rubTextField.snp.makeConstraints { make in
             make.top.equalTo(rubCharLabel.snp.bottom).offset(8)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().offset(smallOffset)
+            make.trailing.equalToSuperview().inset(smallOffset)
             make.height.equalTo(47)
         }
     }
@@ -198,6 +179,16 @@ final class CurrencyDetailViewController: UIViewController {
         currencyNameLabel.text = presenter.getCurrencyName()
         currencyRateLabel.text = presenter.getCurrencyRate()
         currencyCharLabel.text = presenter.getCurrencyChar()
+    }
+    
+    private func createLineLayer() -> CALayer {
+        let layer = CALayer()
+        let offset = Constants.DetailOffset.smallOffset * 2
+        let width = view.frame.width - offset
+        layer.frame = .init(x: 0, y: 46, width: width, height: 0.5)
+        layer.backgroundColor = Constants.Color.textFieldLine.cgColor
+        
+        return layer
     }
     
     // MARK: - Actions
