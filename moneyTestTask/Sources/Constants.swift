@@ -16,6 +16,10 @@ enum Constants {
         static let blue = UIColor(red: 0.247, green: 0.663, blue: 0.961, alpha: 1)
         
         static let lightGray = UIColor(red: 0.674, green: 0.681, blue: 0.742, alpha: 1)
+        
+        static let lightBackground = UIColor(red: 0.948, green: 0.963, blue: 0.986, alpha: 1)
+        
+        static let textFieldLine = UIColor(red: 0.235, green: 0.235, blue: 0.263, alpha: 0.18).cgColor
     }
     
     enum URL {

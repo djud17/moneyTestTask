@@ -7,13 +7,19 @@
 
 import UIKit
 
-protocol CurrencyShedulePresenterProtocol {
-    var delegate: CurrencySheduleDelegate? { get set }
-    
+protocol LoadDataProtocol {
     func loadData()
     func loadData(for date: Date)
+}
+
+protocol GetDataProtocol {
     func getNumberOfRecords() -> Int
     func getRecord(by id: Int) -> Currency?
+}
+
+protocol CurrencyShedulePresenterProtocol: LoadDataProtocol, GetDataProtocol {
+    var delegate: CurrencySheduleDelegate? { get set }
+    
     func itemPressed(by id: Int, with navigationController: UINavigationController?)
 }
 
@@ -21,7 +27,11 @@ final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
     
     // MARK: - Parameters
     weak var delegate: CurrencySheduleDelegate?
-    private var currencies: [String] = []
+    private var currencies: [String] = [] {
+        didSet {
+            currencies = currencies.sorted(by: <)
+        }
+    }
     private var currencyRates: [String: Currency] = [:]
     
     // MARK: - Services
@@ -33,6 +43,7 @@ final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
         self.apiClient = apiClient
     }
     
+    // MARK: - Functions
     func getNumberOfRecords() -> Int {
         currencies.count
     }
@@ -87,7 +98,9 @@ final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
             let currency = currencies[id]
             guard let model = currencyRates[currency] else { return }
             
-            
+            let presenter: CurrencyDetailPresenterProtocol = CurrencyDetailPresenter(currency: model)
+            let detailController = CurrencyDetailViewController(presenter: presenter)
+            navigationController?.pushViewController(detailController, animated: true)
         }
     }
 }

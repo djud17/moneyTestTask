@@ -18,6 +18,7 @@ final class CurrencySheduleViewController: UIViewController {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(nibModels: [CurrencyCollectionViewCellModel.self])
         
         return collectionView
@@ -79,6 +80,7 @@ final class CurrencySheduleViewController: UIViewController {
         view.backgroundColor = Constants.Color.white
         
         navigationItem.title = "Валюты"
+        navigationItem.backButtonTitle = ""
     }
     
     private func setupHierarchy() {
