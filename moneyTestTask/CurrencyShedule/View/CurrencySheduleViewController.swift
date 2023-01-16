@@ -33,6 +33,15 @@ final class CurrencySheduleViewController: UIViewController {
         return datePicker
     }()
     
+    private lazy var loadingIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .large
+        activityIndicator.color = Constants.Color.blue
+        
+        return activityIndicator
+    }()
+    
     // MARK: - Parameters
     private var presenter: CurrencyShedulePresenterProtocol
     
@@ -62,7 +71,7 @@ final class CurrencySheduleViewController: UIViewController {
         setupView()
         setupHierarchy()
         setupLayout()
-        presenter.loadData()
+        loadData()
     }
     
     // MARK: - Setups
@@ -75,6 +84,7 @@ final class CurrencySheduleViewController: UIViewController {
     private func setupHierarchy() {
         view.addSubview(ratesCollectionView)
         view.addSubview(datePickerView)
+        view.addSubview(loadingIndicator)
     }
     
     private func setupLayout() {
@@ -93,6 +103,10 @@ final class CurrencySheduleViewController: UIViewController {
             make.trailing.equalToSuperview().inset(mediumOffset)
             make.bottom.equalToSuperview()
         }
+        
+        loadingIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
     }
     
     // MARK: - Actions
@@ -108,6 +122,8 @@ final class CurrencySheduleViewController: UIViewController {
         let saveButton = UIAlertAction(title: "Сохранить", style: .default) { [weak self] _ in
             let stringDate = self?.dateFormatter.string(from: datePicker.date) ?? ""
             self?.datePickerView.setupDate(with: stringDate)
+            self?.loadingIndicator.startAnimating()
+            self?.presenter.loadData(for: datePicker.date)
         }
         let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
         
@@ -131,6 +147,11 @@ final class CurrencySheduleViewController: UIViewController {
         
         return datePicker
     }
+    
+    private func loadData() {
+        loadingIndicator.startAnimating()
+        presenter.loadData()
+    }
 }
 
 protocol CurrencySheduleDelegate: AnyObject {
@@ -139,6 +160,7 @@ protocol CurrencySheduleDelegate: AnyObject {
 
 extension CurrencySheduleViewController: CurrencySheduleDelegate {
     func updateView() {
+        loadingIndicator.stopAnimating()
         ratesCollectionView.reloadData()
     }
 }
@@ -154,5 +176,12 @@ extension CurrencySheduleViewController: UICollectionViewDataSource {
         let model = CurrencyCollectionViewCellModel(currencyChar: data.charCode, currencyRate: data.value)
         
         return collectionView.dequeueReusableCell(withModel: model, for: indexPath)
+    }
+}
+
+extension CurrencySheduleViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.itemPressed(by: indexPath.row, with: navigationController)
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
