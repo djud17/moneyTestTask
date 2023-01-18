@@ -26,6 +26,8 @@
 		25906F452975C0E8009EDC5A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25906F442975C0E8009EDC5A /* ViewController.swift */; };
 		25906F472975F644009EDC5A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25906F462975F644009EDC5A /* CustomTextField.swift */; };
 		25906F492975FB15009EDC5A /* CustomGrayLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25906F482975FB15009EDC5A /* CustomGrayLabel.swift */; };
+		25E333712978705900104BD5 /* Persistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E333702978705900104BD5 /* Persistance.swift */; };
+		25E333732978895200104BD5 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E333722978895200104BD5 /* Date.swift */; };
 		A53F2C4E46096EAA06991FC1 /* Pods_moneyTestTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5CF9EAB0CD2E93F536D73BB /* Pods_moneyTestTask.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +54,8 @@
 		25906F442975C0E8009EDC5A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		25906F462975F644009EDC5A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		25906F482975FB15009EDC5A /* CustomGrayLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomGrayLabel.swift; sourceTree = "<group>"; };
+		25E333702978705900104BD5 /* Persistance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistance.swift; sourceTree = "<group>"; };
+		25E333722978895200104BD5 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		A8D9EA7EE7C89F55D8E687BC /* Pods-moneyTestTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moneyTestTask.debug.xcconfig"; path = "Target Support Files/Pods-moneyTestTask/Pods-moneyTestTask.debug.xcconfig"; sourceTree = "<group>"; };
 		D5CF9EAB0CD2E93F536D73BB /* Pods_moneyTestTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_moneyTestTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -133,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				255CBD7D297463A100A9F52E /* ApiClient.swift */,
+				25E333702978705900104BD5 /* Persistance.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 			children = (
 				255CBD8B29748CB400A9F52E /* CollectionView.swift */,
 				25906F442975C0E8009EDC5A /* ViewController.swift */,
+				25E333722978895200104BD5 /* Date.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -366,6 +372,8 @@
 				25906F3F2975A970009EDC5A /* CurrencyDetailViewController.swift in Sources */,
 				25906F452975C0E8009EDC5A /* ViewController.swift in Sources */,
 				255CBD7C2974628000A9F52E /* Currency.swift in Sources */,
+				25E333712978705900104BD5 /* Persistance.swift in Sources */,
+				25E333732978895200104BD5 /* Date.swift in Sources */,
 				255CBD86297485BF00A9F52E /* CurrencyCollectionViewCell.swift in Sources */,
 				255CBD8F2974951500A9F52E /* CustomDataPicker.swift in Sources */,
 				255CBD6129745AF500A9F52E /* AppDelegate.swift in Sources */,

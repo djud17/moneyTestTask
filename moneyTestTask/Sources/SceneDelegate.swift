@@ -18,7 +18,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         
         let apiClient: ApiClientProtocol = ApiClient()
-        let currencyShedulePresenter: CurrencyShedulePresenterProtocol = CurrencyShedulePresenter(apiClient: apiClient)
+        let persistance: PersistanceProtocol = Persistance()
+        let currencyShedulePresenter: CurrencyShedulePresenterProtocol = CurrencyShedulePresenter(apiClient: apiClient, persistance: persistance)
         let currencySheduleViewController = CurrencySheduleViewController(presenter: currencyShedulePresenter)
         let navigationController = UINavigationController(rootViewController: currencySheduleViewController)
         
