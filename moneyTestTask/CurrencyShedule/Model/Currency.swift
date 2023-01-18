@@ -9,9 +9,11 @@ import Foundation
 
 // MARK: - Result
 struct RequestResult: Decodable {
+    let date: String
     let currencyRates: [String: Currency]
     
     enum CodingKeys: String, CodingKey {
+        case date = "Date"
         case currencyRates = "Valute"
     }
 }

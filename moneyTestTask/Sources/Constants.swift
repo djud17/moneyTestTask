@@ -8,6 +8,10 @@
 import UIKit
 
 enum Constants {
+    static var currentDate: String {
+        Date.now.getStringDate()
+    }
+    
     enum Color {
         static let white: UIColor = .white
         static let black: UIColor = .black
