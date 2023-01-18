@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Result
 struct RequestResult: Decodable {
     let date: String
     let currencyRates: [String: Currency]
@@ -18,7 +17,6 @@ struct RequestResult: Decodable {
     }
 }
 
-// MARK: - Valute
 struct Currency: Codable {
     let charCode: String
     let nominal: Int

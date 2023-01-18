@@ -11,6 +11,7 @@ import SnapKit
 final class CurrencyDetailViewController: UIViewController {
     
     // MARK: - UI Elements
+    
     private lazy var currencyNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = Constants.Color.black
@@ -76,9 +77,14 @@ final class CurrencyDetailViewController: UIViewController {
     }()
     
     // MARK: - Parameters
+    
     private var presenter: CurrencyDetailPresenterProtocol
     
+    private let smallOffset = Constants.DetailOffset.smallOffset
+    private let mediumOffset = Constants.DetailOffset.mediumOffset
+    
     // MARK: - Inits
+    
     init(presenter: CurrencyDetailPresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -91,6 +97,7 @@ final class CurrencyDetailViewController: UIViewController {
     }
     
     // MARK: - ViewController Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -101,6 +108,7 @@ final class CurrencyDetailViewController: UIViewController {
     }
     
     // MARK: - Setups
+    
     private func setupView() {
         view.backgroundColor = Constants.Color.lightBackground
         
@@ -122,9 +130,6 @@ final class CurrencyDetailViewController: UIViewController {
     }
     
     private func setupLayout() {
-        let smallOffset = Constants.DetailOffset.smallOffset
-        let mediumOffset = Constants.DetailOffset.mediumOffset
-        
         currencyNameLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(mediumOffset)
             make.leading.equalToSuperview().offset(smallOffset)
@@ -148,6 +153,10 @@ final class CurrencyDetailViewController: UIViewController {
             make.leading.trailing.bottom.equalToSuperview()
         }
         
+        setupBackViewLayout()
+    }
+    
+    private func setupBackViewLayout() {
         currencyCharLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(24)
             make.leading.equalToSuperview().offset(smallOffset)
@@ -192,6 +201,7 @@ final class CurrencyDetailViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
     @objc private func currencyTextFieldEditing() {
         guard let value = currencyTextField.text,
               let doubleValue = Double(value) else { return }

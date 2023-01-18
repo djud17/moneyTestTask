@@ -29,10 +29,9 @@ final class Persistance: PersistanceProtocol {
         let objects = realm.objects(RealmCurrencyRate.self)
         
         var filteredObjects = [RealmCurrencyRate]()
-        objects.forEach {
-            if $0.date.formatDate() == date {
-                filteredObjects.append($0)
-            }
+        
+        for object in objects where object.date.formatDate() == date {
+            filteredObjects.append(object)
         }
         
         if filteredObjects.isEmpty {

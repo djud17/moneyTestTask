@@ -12,24 +12,32 @@ enum ConvertDirection {
     case toRub
 }
 
-protocol CurrencyDetailPresenterProtocol {
-    var delegate: CurrencyDetailDelegate? { get set }
-    
+protocol GetDetailDataProtocol {
     func getCurrencyChar() -> String
     func getCurrencyName() -> String
     func getCurrencyRate() -> String
+}
+
+protocol CurrencyDetailPresenterProtocol: GetDetailDataProtocol {
+    var delegate: CurrencyDetailDelegate? { get set }
+    
     func convertCurrency(value: Double, direction: ConvertDirection)
 }
 
 final class CurrencyDetailPresenter: CurrencyDetailPresenterProtocol {
-    weak var delegate: CurrencyDetailDelegate?
     
     // MARK: - Parameters
+    
+    weak var delegate: CurrencyDetailDelegate?
     private let currency: Currency
+    
+    // MARK: - Inits
     
     init(currency: Currency) {
         self.currency = currency
     }
+    
+    // MARK: - Functions
     
     func getCurrencyChar() -> String {
         currency.charCode
@@ -57,12 +65,14 @@ final class CurrencyDetailPresenter: CurrencyDetailPresenterProtocol {
     private func convertFromRub(_ value: Double) {
         let result = value / (Double(currency.nominal) * currency.value)
         let stringResult = String(format: "%.2f", result)
+        
         delegate?.updateCurrencyField(with: stringResult)
     }
     
     private func convertToRub(_ value: Double) {
         let result = (value / Double(currency.nominal)) * currency.value
         let stringResult = String(format: "%.2f", result)
+        
         delegate?.updateRubField(with: stringResult)
     }
 }

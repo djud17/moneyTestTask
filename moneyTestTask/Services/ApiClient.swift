@@ -14,55 +14,37 @@ enum ApiError: Error {
 }
 
 protocol ApiClientProtocol {
-    func getDailyRates(completion: @escaping (Result<RequestResult, ApiError>) -> Void)
-    func getDailyRates(for date: Date, completion: @escaping (Result<RequestResult, ApiError>) -> Void)
+    func getRates(for date: Date?, completion: @escaping (Result<RequestResult, ApiError>) -> Void)
 }
 
 final class ApiClient: ApiClientProtocol {
-    func getDailyRates(completion: @escaping (Result<RequestResult, ApiError>) -> Void) {
-        guard let requestUrl = URL(string: Constants.URL.dailyRates) else { return }
-        
-        AF.request(requestUrl).responseData { response in
-            if response.response?.statusCode == 200 {
-                if let data = response.data {
-                    do {
-                        let results = try JSONDecoder().decode(RequestResult.self, from: data)
-                        completion(.success(results))
-                    } catch {
-                        completion(.failure(.wrongData))
-                    }
-                } else {
-                    completion(.failure(.noData))
-                }
-            } else {
-                completion(.failure(.serverError))
-            }
+    func getRates(for date: Date?, completion: @escaping (Result<RequestResult, ApiError>) -> Void) {
+        let stringUrl: String
+        if let date = date {
+            let stringDate = date.getStringDate()
+            stringUrl = "https://www.cbr-xml-daily.ru/archive/\(stringDate)/daily_json.js"
+        } else {
+            stringUrl = Constants.URL.dailyRates
         }
-    }
-    
-    func getDailyRates(for date: Date, completion: @escaping (Result<RequestResult, ApiError>) -> Void) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy/MM/dd"
         
-        let stringDate = dateFormatter.string(from: date)
-        let urlString = "https://www.cbr-xml-daily.ru/archive/\(stringDate)/daily_json.js"
+        guard let requestUrl = URL(string: stringUrl) else { return }
         
-        guard let url = URL(string: urlString) else { return }
-        
-        AF.request(url).responseData { response in
-            if response.response?.statusCode == 200 {
-                if let data = response.data {
-                    do {
-                        let results = try JSONDecoder().decode(RequestResult.self, from: data)
-                        completion(.success(results))
-                    } catch {
-                        completion(.failure(.wrongData))
+        DispatchQueue.global().async {
+            AF.request(requestUrl).responseData { response in
+                if response.response?.statusCode == 200 {
+                    if let data = response.data {
+                        do {
+                            let results = try JSONDecoder().decode(RequestResult.self, from: data)
+                            completion(.success(results))
+                        } catch {
+                            completion(.failure(.wrongData))
+                        }
+                    } else {
+                        completion(.failure(.noData))
                     }
                 } else {
-                    completion(.failure(.noData))
+                    completion(.failure(.serverError))
                 }
-            } else {
-                completion(.failure(.serverError))
             }
         }
     }

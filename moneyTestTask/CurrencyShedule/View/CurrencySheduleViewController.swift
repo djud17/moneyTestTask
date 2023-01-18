@@ -11,6 +11,7 @@ import SnapKit
 final class CurrencySheduleViewController: UIViewController {
     
     // MARK: - UI Elements
+    
     private lazy var ratesCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 104, height: 110)
@@ -43,9 +44,11 @@ final class CurrencySheduleViewController: UIViewController {
     }()
     
     // MARK: - Parameters
+    
     private var presenter: CurrencyShedulePresenterProtocol
     
     // MARK: - Inits
+    
     init(presenter: CurrencyShedulePresenterProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -58,6 +61,7 @@ final class CurrencySheduleViewController: UIViewController {
     }
     
     // MARK: - ViewController Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,6 +72,7 @@ final class CurrencySheduleViewController: UIViewController {
     }
     
     // MARK: - Setups
+    
     private func setupView() {
         view.backgroundColor = Constants.Color.white
         

@@ -10,6 +10,7 @@ import UIKit
 final class CustomDataPicker: UIView {
     
     // MARK: - UI Elements
+    
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.textColor = Constants.Color.black
@@ -27,9 +28,11 @@ final class CustomDataPicker: UIView {
     }()
     
     // MARK: - Parameters
+    
     var currentDate: String
     
     // MARK: - Inits
+    
     init(currentDate: String) {
         self.currentDate = currentDate
         super.init(frame: .zero)
@@ -44,6 +47,7 @@ final class CustomDataPicker: UIView {
     }
     
     // MARK: - Setups
+    
     private func setupView() {
         layer.borderColor = Constants.Color.lightGray.cgColor
         layer.borderWidth = 1
@@ -73,6 +77,7 @@ final class CustomDataPicker: UIView {
     }
     
     // MARK: - Actions
+    
     func setupDate(with date: String) {
         dateLabel.text = date
         currentDate = date
