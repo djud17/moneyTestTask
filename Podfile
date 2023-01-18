@@ -10,5 +10,6 @@ target 'moneyTestTask' do
 pod 'SnapKit'
 pod 'SwiftLint'
 pod 'Alamofire'
+pod 'RealmSwift'
 
 end

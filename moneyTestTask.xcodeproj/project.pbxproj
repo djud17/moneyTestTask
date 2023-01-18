@@ -233,8 +233,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 255CBD7129745AF700A9F52E /* Build configuration list for PBXNativeTarget "moneyTestTask" */;
 			buildPhases = (
-				255CBD782974615100A9F52E /* ShellScript */,
 				230C702D0E166711EB22D460 /* [CP] Check Pods Manifest.lock */,
+				255CBD782974615100A9F52E /* ShellScript */,
 				255CBD5929745AF500A9F52E /* Sources */,
 				255CBD5A29745AF500A9F52E /* Frameworks */,
 				255CBD5B29745AF500A9F52E /* Resources */,
