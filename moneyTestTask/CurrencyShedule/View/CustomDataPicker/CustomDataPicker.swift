@@ -27,7 +27,7 @@ final class CustomDataPicker: UIView {
     }()
     
     // MARK: - Parameters
-    private var currentDate: String
+    var currentDate: String
     
     // MARK: - Inits
     init(currentDate: String) {
@@ -75,5 +75,6 @@ final class CustomDataPicker: UIView {
     // MARK: - Actions
     func setupDate(with date: String) {
         dateLabel.text = date
+        currentDate = date
     }
 }

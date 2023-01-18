@@ -129,10 +129,14 @@ final class CurrencySheduleViewController: UIViewController {
     }
     
     private func setupDatePicker(in contentView: UIAlertController) -> UIDatePicker {
-        let datePicker = UIDatePicker()
+        let datePicker = UIDatePicker(frame: .zero)
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
         datePicker.maximumDate = .now
+        
+        if let currentDate = datePickerView.currentDate.getDate() {
+            datePicker.date = currentDate
+        }
         
         contentView.view.addSubview(datePicker)
         
