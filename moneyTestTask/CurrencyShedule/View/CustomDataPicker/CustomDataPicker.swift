@@ -56,7 +56,7 @@ final class CustomDataPicker: UIView {
     }
     
     private func setupLayout() {
-        let smallOffset = Constants.Offset.smallOffset
+        let smallOffset: CGFloat = 12
         
         dateLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(smallOffset)

@@ -25,8 +25,7 @@ final class CurrencySheduleViewController: UIViewController {
     }()
     
     private lazy var datePickerView: CustomDataPicker = {
-        let stringDate = dateFormatter.string(from: .now)
-        let datePicker = CustomDataPicker(currentDate: stringDate)
+        let datePicker = CustomDataPicker(currentDate: Constants.currentDate)
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(datePickerTapped))
         datePicker.addGestureRecognizer(gesture)
@@ -45,13 +44,6 @@ final class CurrencySheduleViewController: UIViewController {
     
     // MARK: - Parameters
     private var presenter: CurrencyShedulePresenterProtocol
-    
-    private let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        
-        return dateFormatter
-    }()
     
     // MARK: - Inits
     init(presenter: CurrencyShedulePresenterProtocol) {
@@ -90,7 +82,7 @@ final class CurrencySheduleViewController: UIViewController {
     }
     
     private func setupLayout() {
-        let mediumOffset = Constants.Offset.mediumOffset
+        let mediumOffset = Constants.SheduleOffset.mediumOffset
         
         datePickerView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(mediumOffset)
@@ -122,10 +114,10 @@ final class CurrencySheduleViewController: UIViewController {
         }
         
         let saveButton = UIAlertAction(title: "Сохранить", style: .default) { [weak self] _ in
-            let stringDate = self?.dateFormatter.string(from: datePicker.date) ?? ""
+            let stringDate = datePicker.date.getStringDate()
             self?.datePickerView.setupDate(with: stringDate)
             self?.loadingIndicator.startAnimating()
-            self?.presenter.loadData(for: datePicker.date)
+            self?.presenter.presentData(date: datePicker.date)
         }
         
         let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
@@ -153,7 +145,7 @@ final class CurrencySheduleViewController: UIViewController {
     
     private func loadData() {
         loadingIndicator.startAnimating()
-        presenter.loadData()
+        presenter.presentData(date: nil)
     }
 }
 
