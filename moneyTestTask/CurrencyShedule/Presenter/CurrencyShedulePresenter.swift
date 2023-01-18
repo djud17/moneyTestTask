@@ -7,17 +7,14 @@
 
 import UIKit
 
-protocol LoadDataProtocol {
-    func loadData()
-    func loadData(for date: Date)
-}
-
 protocol GetDataProtocol {
     func getNumberOfRecords() -> Int
     func getRecord(by id: Int) -> Currency?
+    
+    func presentData(date: Date?)
 }
 
-protocol CurrencyShedulePresenterProtocol: LoadDataProtocol, GetDataProtocol {
+protocol CurrencyShedulePresenterProtocol: GetDataProtocol {
     var delegate: CurrencySheduleDelegate? { get set }
     
     func itemPressed(by id: Int, with navigationController: UINavigationController?)
@@ -32,15 +29,18 @@ final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
             currencies = currencies.sorted(by: <)
         }
     }
+    private let currentDate: String = Constants.currentDate
     private var currencyRates: [String: Currency] = [:]
     
     // MARK: - Services
-    private var apiClient: ApiClientProtocol
+    private let apiClient: ApiClientProtocol
+    private let persistance: PersistanceProtocol
     weak var navigationController: UINavigationController?
     
     // MARK: - Inits
-    init(apiClient: ApiClientProtocol) {
+    init(apiClient: ApiClientProtocol, persistance: PersistanceProtocol) {
         self.apiClient = apiClient
+        self.persistance = persistance
     }
     
     // MARK: - Functions
@@ -57,15 +57,40 @@ final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
         }
     }
     
-    func loadData() {
+    func presentData(date: Date?) {
+        if let date = date {
+            getData(for: date)
+        } else {
+            getDailyData()
+        }
+    }
+    
+    private func getDailyData() {
+        if let storageData = persistance.readFrom(date: currentDate) {
+            currencyRates = storageData.currencyRates
+            currencies = storageData.currencyRates.keys.map { $0 }
+            delegate?.updateView()
+        } else {
+            loadDailyData()
+        }
+    }
+    
+    private func loadDailyData() {
         DispatchQueue.global().async { [weak self] in
             self?.apiClient.getDailyRates { result in
                 switch result {
                 case .success(let success):
                     self?.currencyRates = success.currencyRates
                     self?.currencies = success.currencyRates.keys.map { $0 }
+                    
+                    do {
+                        try self?.persistance.writeTo(object: success)
+                    } catch {
+                        let errorMessage = "Ошибка во время сохранения сегодняшних данных - \(error.localizedDescription)"
+                        self?.errorAppeared(message: errorMessage)
+                    }
                 case .failure(let error):
-                    let errorMessage = "Ошибка во время загрузки ежедневных данных - \(error.localizedDescription)"
+                    let errorMessage = "Ошибка во время загрузки сегодняшних данных - \(error.localizedDescription)"
                     self?.errorAppeared(message: errorMessage)
                 }
                 
@@ -76,18 +101,35 @@ final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
         }
     }
     
-    func loadData(for date: Date) {
+    private func getData(for date: Date) {
+        let stringDate = date.getStringDate()
+        
+        if let storageData = persistance.readFrom(date: stringDate) {
+            currencyRates = storageData.currencyRates
+            currencies = storageData.currencyRates.keys.map { $0 }
+            delegate?.updateView()
+        } else {
+            loadData(for: date)
+        }
+    }
+    
+    private func loadData(for date: Date) {
         DispatchQueue.global().async { [weak self] in
             self?.apiClient.getDailyRates(for: date) { result in
+                let stringDate = date.getStringDate()
+                
                 switch result {
                 case .success(let success):
                     self?.currencyRates = success.currencyRates
                     self?.currencies = success.currencyRates.keys.map { $0 }
-                case .failure(let error):
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "dd.MM.yyyy"
-                    let stringDate = dateFormatter.string(from: date)
                     
+                    do {
+                        try self?.persistance.writeTo(object: success)
+                    } catch {
+                        let errorMessage = "Ошибка во время сохранения данных на \(stringDate) - \(error.localizedDescription)"
+                        self?.errorAppeared(message: errorMessage)
+                    }
+                case .failure(let error):
                     let errorMessage = "Ошибка, данных на \(stringDate) нет - \(error.localizedDescription)"
                     self?.errorAppeared(message: errorMessage)
                 }
