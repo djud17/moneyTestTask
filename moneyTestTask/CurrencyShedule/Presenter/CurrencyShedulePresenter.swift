@@ -81,7 +81,14 @@ final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
                 self?.saveDataToStorage(data: success)
             case .failure(let error):
                 let stringDate = date?.getStringDate() ?? "сегодня"
-                let errorMessage = "Ошибка, данных на \(stringDate) нет - \(error.localizedDescription)"
+                let errorMessage: String
+                switch error {
+                case .noData:
+                    errorMessage = "Ошибка, данных на \(stringDate) нет"
+                case .serverError, .wrongData:
+                    errorMessage = "Ошибка сервера, повторите запрос позже"
+                }
+                
                 self?.errorAppeared(message: errorMessage)
             }
             
@@ -95,7 +102,7 @@ final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
         do {
             try persistance.writeTo(object: data)
         } catch {
-            let errorMessage = "Ошибка во время сохранения данных - \(error.localizedDescription)"
+            let errorMessage = "Ошибка во время сохранения данных"
             errorAppeared(message: errorMessage)
         }
     }
