@@ -10,13 +10,13 @@ import UIKit
 protocol GetSheduleDataProtocol {
     func getNumberOfRecords() -> Int
     func getRecord(by id: Int) -> Currency?
+    func getData(date: Date?)
 }
 
 protocol CurrencyShedulePresenterProtocol: GetSheduleDataProtocol {
     var delegate: CurrencySheduleDelegate? { get set }
     
     func itemPressed(by id: Int, with navigationController: UINavigationController?)
-    func presentData(date: Date?)
 }
 
 final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
@@ -60,7 +60,7 @@ final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
         }
     }
     
-    func presentData(date: Date?) {
+    func getData(date: Date?) {
         let dateKey = date?.getStringDate() ?? currentDate
         if let storageData = persistance.readFrom(date: dateKey) {
             currencyRates = storageData.currencyRates
@@ -73,20 +73,14 @@ final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
     
     private func loadData(for date: Date?) {
         apiClient.getRates(for: date) { [weak self] result in
-            let stringDate = date?.getStringDate() ?? "сегодня"
-            
             switch result {
             case .success(let success):
                 self?.currencyRates = success.currencyRates
                 self?.currencies = Array(success.currencyRates.keys)
                 
-                do {
-                    try self?.persistance.writeTo(object: success)
-                } catch {
-                    let errorMessage = "Ошибка во время сохранения данных на \(stringDate) - \(error.localizedDescription)"
-                    self?.errorAppeared(message: errorMessage)
-                }
+                self?.saveDataToStorage(data: success)
             case .failure(let error):
+                let stringDate = date?.getStringDate() ?? "сегодня"
                 let errorMessage = "Ошибка, данных на \(stringDate) нет - \(error.localizedDescription)"
                 self?.errorAppeared(message: errorMessage)
             }
@@ -94,6 +88,15 @@ final class CurrencyShedulePresenter: CurrencyShedulePresenterProtocol {
             DispatchQueue.main.async {
                 self?.delegate?.updateView()
             }
+        }
+    }
+    
+    private func saveDataToStorage(data: RequestResult) {
+        do {
+            try persistance.writeTo(object: data)
+        } catch {
+            let errorMessage = "Ошибка во время сохранения данных - \(error.localizedDescription)"
+            errorAppeared(message: errorMessage)
         }
     }
     

@@ -122,7 +122,7 @@ final class CurrencySheduleViewController: UIViewController {
             let stringDate = datePicker.date.getStringDate()
             self?.datePickerView.setupDate(with: stringDate)
             self?.loadingIndicator.startAnimating()
-            self?.presenter.presentData(date: datePicker.date)
+            self?.presenter.getData(date: datePicker.date)
         }
         
         let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
@@ -139,9 +139,8 @@ final class CurrencySheduleViewController: UIViewController {
         datePicker.datePickerMode = .date
         datePicker.maximumDate = .now
         
-        if let currentDate = datePickerView.currentDate.getDate() {
-            datePicker.date = currentDate
-        }
+        let currentDate = datePickerView.currentDate.getDate() ?? .now
+        datePicker.date = currentDate
         
         contentView.view.addSubview(datePicker)
         
@@ -154,7 +153,7 @@ final class CurrencySheduleViewController: UIViewController {
     
     private func loadData() {
         loadingIndicator.startAnimating()
-        presenter.presentData(date: nil)
+        presenter.getData(date: nil)
     }
 }
 
@@ -191,6 +190,5 @@ extension CurrencySheduleViewController: UICollectionViewDataSource {
 extension CurrencySheduleViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter.itemPressed(by: indexPath.row, with: navigationController)
-        collectionView.deselectItem(at: indexPath, animated: true)
     }
 }

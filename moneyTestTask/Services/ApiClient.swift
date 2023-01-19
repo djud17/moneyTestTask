@@ -18,6 +18,8 @@ protocol ApiClientProtocol {
 }
 
 final class ApiClient: ApiClientProtocol {
+    static let shared = ApiClient()
+    
     func getRates(for date: Date?, completion: @escaping (Result<RequestResult, ApiError>) -> Void) {
         let stringUrl: String
         if let date = date {
